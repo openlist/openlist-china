@@ -1,0 +1,36 @@
+! === Google ===
+||google.com
+||google.com.hk
+||gstatic.com
+||googleusercontent.com
+||googlevideo.com
+||youtube.com
+
+! === Social ===
+||twitter.com
+||twimg.com
+||t.co
+||facebook.com
+||tumblr.com
+||vimeo.com
+||soundcloud.com
+||instagram.com
+||imgur.com
+||telegram.org
+
+! === Developer ===
+||gist.com
+||speakerdeck.com
+||slideshare.net
+||slidesharecdn.com
+
+! === News ===
+||nytimes.com
+
+! === CDN ===
+||sstatic.com
+||cafe24.com
+
+! === Others ===
+||jp
+||tw
