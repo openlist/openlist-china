@@ -5,16 +5,12 @@ var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_ag
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _inherits(subClass, superClass) { subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Filter = {
-  optionsRegExp: /\$(~?[\w\-]+(?:=[^,\s]+)?(?:,~?[\w\-]+(?:=[^,\s]+)?)*)$/,
-
   fromText: function fromText(text) {
     text = text.trim();
-    if (!text || text[0] === '!' || text.includes('#@#')) return;
+    if (!text || text[0] === '!') return;
     return RegExpFilter.fromText(text.replace(/\s/g, ''));
   },
   isRegExpFilter: function isRegExpFilter(filter) {
@@ -28,29 +24,9 @@ var Filter = {
   }
 };
 
-var ActiveFilter = (function () {
-  function ActiveFilter() {
-    _classCallCheck(this, ActiveFilter);
-  }
-
-  _createClass(ActiveFilter, [{
-    key: 'calcDomains',
-    value: function calcDomains() {}
-  }, {
-    key: 'isActiveOnDomain',
-    value: function isActiveOnDomain(docDomain) {
-      return true;
-    }
-  }]);
-
-  return ActiveFilter;
-})();
-
-var RegExpFilter = (function (_ActiveFilter) {
-  _inherits(RegExpFilter, _ActiveFilter);
+var RegExpFilter = (function () {
 
   function RegExpFilter(regexpSrc) {
-    _classCallCheck(this, RegExpFilter);
 
     _get(Object.getPrototypeOf(RegExpFilter.prototype), 'constructor', this).call(this);
     this.regexpSrc = regexpSrc;
@@ -99,14 +75,13 @@ var RegExpFilter = (function (_ActiveFilter) {
   }]);
 
   return RegExpFilter;
-})(ActiveFilter);
+})();
 
 
 var BlockingFilter = (function (_RegExpFilter) {
   _inherits(BlockingFilter, _RegExpFilter);
 
   function BlockingFilter() {
-    _classCallCheck(this, BlockingFilter);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -122,7 +97,6 @@ var WhitelistFilter = (function (_RegExpFilter2) {
   _inherits(WhitelistFilter, _RegExpFilter2);
 
   function WhitelistFilter() {
-    _classCallCheck(this, WhitelistFilter);
 
     for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
       args[_key2] = arguments[_key2];
@@ -138,15 +112,9 @@ var HIDE_DISC = '{display:none!important}';
 var isWhitelistFilter = Filter.isWhitelistFilter;
 
 var _Matcher = {
-  /**
-   * @type {Map.<string, Array.<ActiveFilter>>}
-   */
   filterByKeyword: new Map(),
 
-  /**
-   * @param {ActiveFilter} filter
-   */
-  add: function add(filter) {
+  add: function (filter) {
     var keyword = this.findKeyword(filter);
     var map = this.filterByKeyword;
     if (map.has(keyword)) {
@@ -161,10 +129,7 @@ var _Matcher = {
     }
   },
 
-  /**
-   * @param {ActiveFilter} filter
-   */
-  findKeyword: function findKeyword(filter) {
+  findKeyword: function (filter) {
     var text = filter.regexpSrc;
     var defaultResult = '';
 
@@ -198,7 +163,7 @@ var _Matcher = {
     return result;
   },
 
-  checkEntryMatch: function checkEntryMatch(word, location) {
+  checkEntryMatch: function (word, location) {
     var array = this.filterByKeyword.get(word);
     for (var i = 0, l = array.length, filter = undefined; i < l; i++) {
       filter = array[i];
@@ -209,7 +174,7 @@ var _Matcher = {
     return null;
   },
 
-  matchesAny: function matchesAny(location) {
+  matchesAny: function (location) {
     var keywords = location.toLowerCase().match(/[a-z0-9%]{3,}/g) || [];
     keywords.unshift('');
 
@@ -229,14 +194,14 @@ var _Matcher = {
 };
 var Matcher = {
   matchesAny: _Matcher.matchesAny.bind(_Matcher),
-  addFilter: function addFilter(text) {
+  addFilter: function (text) {
     var filterObj = Filter.fromText(text);
     filterObj && _Matcher.add(filterObj);
   }
 };
 // === @end xiaody/adblock-minus ===
 
-["! === Google ===","||google.com","||google.com.hk","||gstatic.com","||googleapis.com","||googleusercontent.com","||googlevideo.com","||googlecode.com","||chrome.com","||appspot.com","||youtube.com","||ytimg.com","||youtu.be","||blogger.com","||googlezip.net","! === Social ===","||twitter.com","||twimg.com","||t.co","||facebook.com","||fbcdn.net","||tumblr.com","||vimeo.com","||soundcloud.com","||instagram.com","||flickr.com","||imgur.com","||pixiv.net","||telegram.org","||fc2.com","! === Developer ===","||gist.com","||devdocs.io","||dropbox.com","||speakerdeck.com","||slideshare.net","||slidesharecdn.com","||wikipedia.org","! === News ===","||nytimes.com","||chinagfw.org","! === CDN ===","||sstatic.com","||fastly.net","||akamai.net","||gravatar.com","||cafe24.com","! === Others ===","||jp","||tw","! vim: set filetype=adblockfilter: (mojako/adblock-filter.vim)",""].forEach(Matcher.addFilter);
+["! === Google ===","||google.com","||google.com.hk","||gstatic.com","||googleapis.com","||googleusercontent.com","||googlevideo.com","||googlecode.com","||chrome.com","||appspot.com","||blogspot.com","||youtube.com","||ytimg.com","||youtu.be","||blogger.com","||googlezip.net","||goo.gl","! === Social ===","||twitter.com","||twimg.com","||t.co","||facebook.com","||xx.fbcdn.net","||tumblr.com","||vimeo.com","||soundcloud.com","||instagram.com","||flickr.com","||imgur.com","||pixiv.net","||telegram.org","||web.telegram.org","||wordpress.com","||fc2.com","! === Developer ===","||gist.com","||devdocs.io","||dropbox.com","||speakerdeck.com","||slideshare.net","||slidesharecdn.com","||wikipedia.org","||duckduckgo.com","||openvpn.net","||tunnelbear.com","||bit.ly","! === News ===","||nytimes.com","||nyt.com","||feedly.com","||chinagfw.org","||fanqianghou.com","||sankakucomplex.com","! === CDN ===","||sstatic.com","||global.ssl.fastly.net","||akamai.net","||gravatar.com","||cloudfront.net","||w.org^","||wp.com^","||cafe24.com","! === Others ===","/ooxx^","||jp","||tw","! vim: set filetype=adblockfilter: (mojako/adblock-filter.vim)",""].forEach(Matcher.addFilter);
 
 function FindProxyForURL (url) {
   if (Matcher.matchesAny(url)) {

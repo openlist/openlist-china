@@ -8,18 +8,20 @@
 ||googlecode.com
 ||chrome.com
 ||appspot.com
+||blogspot.com
 ||youtube.com
 ||ytimg.com
 ||youtu.be
 ||blogger.com
 ||googlezip.net
+||goo.gl
 
 ! === Social ===
 ||twitter.com
 ||twimg.com
 ||t.co
 ||facebook.com
-||fbcdn.net
+||xx.fbcdn.net
 ||tumblr.com
 ||vimeo.com
 ||soundcloud.com
@@ -28,6 +30,8 @@
 ||imgur.com
 ||pixiv.net
 ||telegram.org
+||web.telegram.org
+||wordpress.com
 ||fc2.com
 
 ! === Developer ===
@@ -38,19 +42,31 @@
 ||slideshare.net
 ||slidesharecdn.com
 ||wikipedia.org
+||duckduckgo.com
+||openvpn.net
+||tunnelbear.com
+||bit.ly
 
 ! === News ===
 ||nytimes.com
+||nyt.com
+||feedly.com
 ||chinagfw.org
+||fanqianghou.com
+||sankakucomplex.com
 
 ! === CDN ===
 ||sstatic.com
-||fastly.net
+||global.ssl.fastly.net
 ||akamai.net
 ||gravatar.com
+||cloudfront.net
+||w.org^
+||wp.com^
 ||cafe24.com
 
 ! === Others ===
+/ooxx^
 ||jp
 ||tw
 
