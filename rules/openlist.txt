@@ -2,35 +2,56 @@
 ||google.com
 ||google.com.hk
 ||gstatic.com
+||googleapis.com
 ||googleusercontent.com
 ||googlevideo.com
+||googlecode.com
+||chrome.com
+||appspot.com
 ||youtube.com
+||ytimg.com
+||youtu.be
+||blogger.com
+||googlezip.net
 
 ! === Social ===
 ||twitter.com
 ||twimg.com
 ||t.co
 ||facebook.com
+||fbcdn.net
 ||tumblr.com
 ||vimeo.com
 ||soundcloud.com
 ||instagram.com
+||flickr.com
 ||imgur.com
+||pixiv.net
 ||telegram.org
+||fc2.com
 
 ! === Developer ===
 ||gist.com
+||devdocs.io
+||dropbox.com
 ||speakerdeck.com
 ||slideshare.net
 ||slidesharecdn.com
+||wikipedia.org
 
 ! === News ===
 ||nytimes.com
+||chinagfw.org
 
 ! === CDN ===
 ||sstatic.com
+||fastly.net
+||akamai.net
+||gravatar.com
 ||cafe24.com
 
 ! === Others ===
 ||jp
 ||tw
+
+! vim: set filetype=adblockfilter: (mojako/adblock-filter.vim)

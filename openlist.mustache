@@ -1,0 +1,249 @@
+'use strict';
+
+// === @start xiaody/adblock-minus ===
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+var Filter = {
+  optionsRegExp: /\$(~?[\w\-]+(?:=[^,\s]+)?(?:,~?[\w\-]+(?:=[^,\s]+)?)*)$/,
+
+  fromText: function fromText(text) {
+    text = text.trim();
+    if (!text || text[0] === '!' || text.includes('#@#')) return;
+    return RegExpFilter.fromText(text.replace(/\s/g, ''));
+  },
+  isRegExpFilter: function isRegExpFilter(filter) {
+    return filter instanceof RegExpFilter;
+  },
+  isWhitelistFilter: function isWhitelistFilter(filter) {
+    return filter instanceof WhitelistFilter;
+  },
+  isBlockingFilter: function isBlockingFilter(filter) {
+    return filter instanceof BlockingFilter;
+  }
+};
+
+var ActiveFilter = (function () {
+  function ActiveFilter() {
+    _classCallCheck(this, ActiveFilter);
+  }
+
+  _createClass(ActiveFilter, [{
+    key: 'calcDomains',
+    value: function calcDomains() {}
+  }, {
+    key: 'isActiveOnDomain',
+    value: function isActiveOnDomain(docDomain) {
+      return true;
+    }
+  }]);
+
+  return ActiveFilter;
+})();
+
+var RegExpFilter = (function (_ActiveFilter) {
+  _inherits(RegExpFilter, _ActiveFilter);
+
+  function RegExpFilter(regexpSrc) {
+    _classCallCheck(this, RegExpFilter);
+
+    _get(Object.getPrototypeOf(RegExpFilter.prototype), 'constructor', this).call(this);
+    this.regexpSrc = regexpSrc;
+    this.regexp = null; // lazy generate from @regexpSrc
+  }
+
+  _createClass(RegExpFilter, [{
+    key: 'genRegexp',
+    value: function genRegexp() {
+      var regexpSrc = this.regexpSrc;
+      if (!regexpSrc) return;
+      if (regexpSrc.length > 2 && regexpSrc[regexpSrc.length - 1] === '/' && regexpSrc[0] === '/') {
+        // The filter is a regular expression - convert it immediately.
+        this.regexp = new RegExp(regexpSrc.substr(1, regexpSrc.length - 2));
+      } else {
+        this.regexp = new RegExp(RegExpFilter.convert(regexpSrc));
+      }
+      this.regexpSrc = void 0;
+    }
+  }, {
+    key: 'matches',
+    value: function matches(location) {
+      if (!this.regexp) this.genRegexp();
+      return this.regexp.test(location);
+    }
+
+    /* convert abpexp to regexp */
+  }], [{
+    key: 'convert',
+    value: function convert(abpexp) {
+      return abpexp.replace(/\*+/g, '*').replace(/^\*|\*$/g, '').replace(/\^\|$/, '^').replace(/\W/g, '\\$&').replace(/\\\*/g, '.*').replace(/\\\^/g, '(?:[\\x00-\\x24\\x26-\\x2C\\x2F\\x3A-\\x40\\x5B-\\x5E\\x60\\x7B-\\x7F]|$)').replace(/^\\\|\\\|/, '^[\\w\\-]+:\\/+(?!\\/)(?:[^.\\/]+\\.)?').replace(/^\\\|/, '^').replace(/\\\|$/, '$');
+    }
+  }, {
+    key: 'fromText',
+    value: function fromText(text) {
+      var blocking = true;
+
+      if (text.indexOf('@@') === 0) {
+        blocking = false;
+        text = text.substr(2);
+      }
+
+      var Constructor = blocking ? BlockingFilter : WhitelistFilter;
+      return new Constructor(text);
+    }
+  }]);
+
+  return RegExpFilter;
+})(ActiveFilter);
+
+
+var BlockingFilter = (function (_RegExpFilter) {
+  _inherits(BlockingFilter, _RegExpFilter);
+
+  function BlockingFilter() {
+    _classCallCheck(this, BlockingFilter);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _get(Object.getPrototypeOf(BlockingFilter.prototype), 'constructor', this).apply(this, args);
+  }
+
+  return BlockingFilter;
+})(RegExpFilter);
+
+var WhitelistFilter = (function (_RegExpFilter2) {
+  _inherits(WhitelistFilter, _RegExpFilter2);
+
+  function WhitelistFilter() {
+    _classCallCheck(this, WhitelistFilter);
+
+    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    _get(Object.getPrototypeOf(WhitelistFilter.prototype), 'constructor', this).apply(this, args);
+  }
+
+  return WhitelistFilter;
+})(RegExpFilter);
+
+var HIDE_DISC = '{display:none!important}';
+var isWhitelistFilter = Filter.isWhitelistFilter;
+
+var _Matcher = {
+  /**
+   * @type {Map.<string, Array.<ActiveFilter>>}
+   */
+  filterByKeyword: new Map(),
+
+  /**
+   * @param {ActiveFilter} filter
+   */
+  add: function add(filter) {
+    var keyword = this.findKeyword(filter);
+    var map = this.filterByKeyword;
+    if (map.has(keyword)) {
+      // Make sure the white-lists are always at first
+      if (isWhitelistFilter(filter)) {
+        map.get(keyword).unshift(filter);
+      } else {
+        map.get(keyword).push(filter);
+      }
+    } else {
+      map.set(keyword, [filter]);
+    }
+  },
+
+  /**
+   * @param {ActiveFilter} filter
+   */
+  findKeyword: function findKeyword(filter) {
+    var text = filter.regexpSrc;
+    var defaultResult = '';
+
+    if (text.length > 2 && text[text.length - 1] === '/' && text[0] === '/') {
+      return defaultResult;
+    }
+
+    var candidates = text.toLowerCase().match(/[^a-z0-9%*][a-z0-9%]{3,}(?=[^a-z0-9%*])/g);
+    if (!candidates) {
+      return defaultResult;
+    }
+
+    var map = this.filterByKeyword;
+    var result = defaultResult;
+    var resultCount = 0xFFFFFF;
+    var resultLength = 0;
+
+    candidates.forEach(function (candidate) {
+      candidate = candidate.substr(1);
+      var count = 0;
+      if (map.has(candidate)) {
+        count = map.get(candidate).length;
+      }
+      if (count < resultCount || count === resultCount && candidate.length > resultLength) {
+        result = candidate;
+        resultCount = count;
+        resultLength = candidate.length;
+      }
+    });
+
+    return result;
+  },
+
+  checkEntryMatch: function checkEntryMatch(word, location) {
+    var array = this.filterByKeyword.get(word);
+    for (var i = 0, l = array.length, filter = undefined; i < l; i++) {
+      filter = array[i];
+      if (filter.matches(location)) {
+        return filter;
+      }
+    }
+    return null;
+  },
+
+  matchesAny: function matchesAny(location) {
+    var keywords = location.toLowerCase().match(/[a-z0-9%]{3,}/g) || [];
+    keywords.unshift('');
+
+    var map = this.filterByKeyword;
+    var afterall = false;
+    for (var substr = undefined, result = undefined, i = keywords.length; i--;) {
+      substr = keywords[i];
+      if (map.has(substr)) {
+        result = this.checkEntryMatch(substr, location);
+        if (!result) continue;
+        if (isWhitelistFilter(result)) return false;else afterall = true;
+      }
+    }
+    return afterall;
+  }
+
+};
+var Matcher = {
+  matchesAny: _Matcher.matchesAny.bind(_Matcher),
+  addFilter: function addFilter(text) {
+    var filterObj = Filter.fromText(text);
+    filterObj && _Matcher.add(filterObj);
+  }
+};
+// === @end xiaody/adblock-minus ===
+
+{{{filters}}}.forEach(Matcher.addFilter);
+
+function FindProxyForURL (url) {
+  if (Matcher.matchesAny(url)) {
+    return "{{{match}}}";
+  } else {
+    return "{{{miss}}}";
+  }
+}
+
+// vim: set filetype=javascript:
