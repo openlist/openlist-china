@@ -23,7 +23,7 @@ program
 var rulePath = program.rule || path.join(__dirname, 'rules/openlist.txt')
 var filters = fs.readFileSync(rulePath, 'utf8').split(/[\r\n]+/)
 var output = Mustache.render(template, {
-  filters: JSON.stringify(filters),
+  filters: JSON.stringify(filters, null, 2),
   match: program.match || 'SOCKS5 127.0.0.1:1080; PROXY 192.168.1.1:8123; DIRECT;',
   miss: program.miss || 'DIRECT'
 })
@@ -32,4 +32,4 @@ var outputPath = program.output || path.join(__dirname, 'openlist.pac')
 fs.writeFileSync(outputPath, output)
 console.log('Generate pac file at', outputPath)
 
-module.exports = { pac: output }
+module.exports = require(outputPath)

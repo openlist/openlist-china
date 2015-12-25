@@ -35,7 +35,7 @@
 ||fc2.com
 
 ! === Developer ===
-||gist.com
+||gist.github.com
 ||devdocs.io
 ||dropbox.com
 ||speakerdeck.com
@@ -56,18 +56,17 @@
 ||sankakucomplex.com
 
 ! === CDN ===
-||sstatic.com
+||sstatic.net
 ||global.ssl.fastly.net
 ||akamai.net
 ||gravatar.com
 ||cloudfront.net
+||edgefonts.net
 ||w.org^
 ||wp.com^
 ||cafe24.com
 
 ! === Others ===
 /ooxx^
-||jp
-||tw
 
 ! vim: set filetype=adblockfilter: (mojako/adblock-filter.vim)
