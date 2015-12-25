@@ -1,19 +1,23 @@
 {
   "name": "openlist",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Across the Great Firewall, we can reach every corner in the world.",
   "main": "index.js",
   "bin": "index.js",
   "preferGlobal": true,
+  "scripts": {
+    "test": "type jshint >/dev/null && jshint index.js openlist.pac"
+  },
   "repository": "openlist/openlist-china",
   "keywords": [
     "openlist",
-    "autoproxy"
+    "autoproxy",
+    "gfw"
   ],
   "author": "nobody",
   "license": "GPL-3.0",
   "dependencies": {
-    "commander": "^2.9.0",
-    "mustache": "^2.2.1"
+    "commander": "2.9.0",
+    "mustache": "2.2.1"
   }
 }

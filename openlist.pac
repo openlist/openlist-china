@@ -1,3 +1,7 @@
+/*!
+ * @homepage https://github.com/openlist/openlist-china
+ * @license GPL-3.0
+ */
 /* jshint asi:true, node:true, esnext:true */
 'use strict'
 
@@ -148,10 +152,15 @@ var _Matcher = {
 }
 
 var Matcher = {
-  matchesAny: _Matcher.matchesAny.bind(_Matcher),
-  addFilter: function (text) {
+  match: _Matcher.matchesAny.bind(_Matcher),
+  add: function (text) {
     var filterObj = Filter.fromText(text)
     if (filterObj) _Matcher.add(filterObj)
+    return this
+  },
+  clear: function () {
+    _Matcher.filterByKeyword.clear()
+    return this
   }
 }
 // === @end xiaody/adblock-minus ===
@@ -159,83 +168,153 @@ var Matcher = {
 ;[
   "! === Google ===",
   "||google.com",
-  "||google.com.hk",
   "||gstatic.com",
   "||googleapis.com",
   "||googleusercontent.com",
+  "||ggpht.com",
   "||googlevideo.com",
+  "||docs.google.com",
+  "||client-channel.google.com",
   "||googlecode.com",
   "||chrome.com",
+  "||chromium.org",
+  "||chromestatus.com",
+  "||android.com",
   "||appspot.com",
   "||blogspot.com",
+  "||bp.blogspot.com",
   "||youtube.com",
   "||ytimg.com",
   "||youtu.be",
   "||blogger.com",
+  "||withgoogle.com",
+  "||feedburner.com",
   "||googlezip.net",
   "||goo.gl",
+  "||g.co",
   "! === Social ===",
   "||twitter.com",
   "||twimg.com",
   "||t.co",
   "||facebook.com",
+  "||facebook.net",
   "||xx.fbcdn.net",
   "||tumblr.com",
+  "||media.tumblr.com",
   "||vimeo.com",
   "||soundcloud.com",
   "||instagram.com",
+  "||cdninstagram.com",
   "||flickr.com",
+  "||myspace.com",
+  "||myspacecdn.com",
+  "||plurk.com",
+  "||deviantart.com",
+  "||deviantart.net",
   "||imgur.com",
   "||pixiv.net",
+  "||iqdb.org",
   "||telegram.org",
   "||web.telegram.org",
+  "||line.me",
+  "||viber.com",
+  "||cdn.viber.com",
   "||wordpress.com",
+  "||video.yahoo.com",
   "||fc2.com",
+  "||contents.fc2.com",
+  "||nicovideo.jp",
+  "||blog.jp",
+  "||blogimg.jp",
+  "||jiandan.net",
+  "||gamer.com.tw",
+  "||bahamut.com.tw",
+  "||disqus.com",
+  "||disquscdn.com",
   "! === Developer ===",
-  "||gist.github.com",
+  "||github.com",
+  "||githubusercontent.com",
   "||devdocs.io",
+  "||npmjs.com",
   "||dropbox.com",
   "||speakerdeck.com",
   "||slideshare.net",
   "||slidesharecdn.com",
   "||wikipedia.org",
+  "||m.wikipedia.org",
   "||duckduckgo.com",
   "||openvpn.net",
   "||tunnelbear.com",
+  "||box.com",
+  "||sugarsync.com",
   "||bit.ly",
+  "||j.mp",
+  "||ift.tt",
+  "||archive.org",
+  "||peter.sh",
   "! === News ===",
+  "||wsj.com",
+  "||wsj.net",
   "||nytimes.com",
   "||nyt.com",
+  "||bbc.com",
+  "||bbci.co.uk",
+  "||cnn.com",
+  "||reuters.com",
+  "||mobile.reuters.com",
+  "||chosun.com",
   "||feedly.com",
+  "||sankakucomplex.com",
+  "||beijingspring.com",
+  "||xys.org",
+  "||e-hentai.org",
+  "||ehgt.org",
+  "||minkch.com",
+  "||t66y.com",
+  "||greatfire.org",
   "||chinagfw.org",
   "||fanqianghou.com",
-  "||sankakucomplex.com",
   "! === CDN ===",
   "||sstatic.net",
   "||global.ssl.fastly.net",
   "||akamai.net",
+  "||akamaihd.net",
   "||gravatar.com",
   "||cloudfront.net",
+  "||cloudflare.com",
   "||edgefonts.net",
+  "||cloudup.com",
+  "||cldup.com",
   "||w.org^",
   "||wp.com^",
   "||cafe24.com",
+  "||qpic.ws",
+  "||tinypic.com",
+  "||imageab.com",
+  "||imgchili.net",
+  "||imgspice.com",
+  "||imgtwist.com",
+  "||picuphost.com",
+  "||uploadhouse.com",
+  "||ipoock.com",
+  "||imgaa.com",
+  "||imgwe.com",
   "! === Others ===",
-  "/ooxx^",
+  "||shadowsocks.org",
+  "||getlantern.org",
+  "||helpzhuling.org",
+  "||*.ninja^",
+  "||*.xxx^",
   "! vim: set filetype=adblockfilter: (mojako/adblock-filter.vim)",
   ""
-].forEach(Matcher.addFilter)
+].forEach(Matcher.add)
 
 function FindProxyForURL (url) {
-  if (Matcher.matchesAny(url)) {
-    return 'SOCKS5 127.0.0.1:1080; PROXY 192.168.1.1:8123; DIRECT;'
-  } else {
-    return 'DIRECT'
-  }
+  return Matcher.match(url) ? 'SOCKS5 127.0.0.1:1080; PROXY 192.168.1.1:8123; DIRECT;' : 'DIRECT'
 }
 
 if (typeof module === 'object') {
-  module.exports = FindProxyForURL
+  module.exports = Matcher
 }
 
 // vim: set filetype=javascript:

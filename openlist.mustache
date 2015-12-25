@@ -1,3 +1,7 @@
+/*!
+ * @homepage https://github.com/openlist/openlist-china
+ * @license GPL-3.0
+ */
 /* jshint asi:true, node:true, esnext:true */
 'use strict'
 
@@ -148,26 +152,27 @@ var _Matcher = {
 }
 
 var Matcher = {
-  matchesAny: _Matcher.matchesAny.bind(_Matcher),
-  addFilter: function (text) {
+  match: _Matcher.matchesAny.bind(_Matcher),
+  add: function (text) {
     var filterObj = Filter.fromText(text)
     if (filterObj) _Matcher.add(filterObj)
+    return this
+  },
+  clear: function () {
+    _Matcher.filterByKeyword.clear()
+    return this
   }
 }
 // === @end xiaody/adblock-minus ===
 
-;{{{filters}}}.forEach(Matcher.addFilter)
+;{{{filters}}}.forEach(Matcher.add)
 
 function FindProxyForURL (url) {
-  if (Matcher.matchesAny(url)) {
-    return '{{{match}}}'
-  } else {
-    return '{{{miss}}}'
-  }
+  return Matcher.match(url) ? '{{{match}}}' : '{{{miss}}}'
 }
 
 if (typeof module === 'object') {
-  module.exports = FindProxyForURL
+  module.exports = Matcher
 }
 
 // vim: set filetype=javascript:
