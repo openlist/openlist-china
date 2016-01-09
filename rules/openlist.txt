@@ -114,6 +114,7 @@
 ||fanqianghou.com
 
 ! === CDN ===
+.amazonaws.com
 ||sstatic.net
 ||global.ssl.fastly.net
 ||akamai.net
@@ -122,6 +123,7 @@
 ||cloudfront.net
 ||cloudflare.com
 ||edgefonts.net
+||typekit.net
 ||webtype.com
 ||cloudup.com
 ||cldup.com

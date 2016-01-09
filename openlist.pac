@@ -69,7 +69,7 @@ WhitelistFilter.prototype.constructor = WhitelistFilter
 
 var isWhitelistFilter = Filter.isWhitelistFilter
 
-var _Matcher = {
+var Matcher = {
   filterByKeyword: new Map(),
 
   add: function (filter) {
@@ -151,15 +151,15 @@ var _Matcher = {
   }
 }
 
-var Matcher = {
-  match: _Matcher.matchesAny.bind(_Matcher),
+var Openlist = {
+  match: Matcher.matchesAny.bind(Matcher),
   add: function (text) {
     var filterObj = Filter.fromText(text)
-    if (filterObj) _Matcher.add(filterObj)
+    if (filterObj) Matcher.add(filterObj)
     return this
   },
   clear: function () {
-    _Matcher.filterByKeyword.clear()
+    Matcher.filterByKeyword.clear()
     return this
   }
 }
@@ -278,6 +278,7 @@ var Matcher = {
   "||chinagfw.org",
   "||fanqianghou.com",
   "! === CDN ===",
+  ".amazonaws.com",
   "||sstatic.net",
   "||global.ssl.fastly.net",
   "||akamai.net",
@@ -286,6 +287,7 @@ var Matcher = {
   "||cloudfront.net",
   "||cloudflare.com",
   "||edgefonts.net",
+  "||typekit.net",
   "||webtype.com",
   "||cloudup.com",
   "||cldup.com",
@@ -311,14 +313,14 @@ var Matcher = {
   "||*.xxx^",
   "! vim: set filetype=adblockfilter: (mojako/adblock-filter.vim)",
   ""
-].forEach(Matcher.add)
+].forEach(Openlist.add)
 
 function FindProxyForURL (url) {
-  return Matcher.match(url) ? 'SOCKS5 127.0.0.1:1080; PROXY 192.168.1.1:8123; DIRECT;' : 'DIRECT'
+  return Openlist.match(url) ? 'SOCKS5 127.0.0.1:1080; PROXY 192.168.1.1:8123; DIRECT;' : 'DIRECT'
 }
 
 if (typeof module === 'object') {
-  module.exports = Matcher
+  module.exports = Openlist
 }
 
 // vim: set filetype=javascript:
