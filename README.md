@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/openlist.svg)](http://badge.fury.io/js/openlist)
+
 An autoproxy pac for mainland China.
 
 Install globally:
