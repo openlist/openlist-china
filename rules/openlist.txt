@@ -74,6 +74,7 @@
 ||devdocs.io
 ||npmjs.com
 ||dropbox.com
+||dropboxstatic.com
 ||speakerdeck.com
 ||slideshare.net
 ||slidesharecdn.com
@@ -94,6 +95,7 @@
 ||wsj.com
 ||wsj.net
 ||nytimes.com
+||cn.nytimes.com
 ||nyt.com
 ||bbc.com
 ||bbci.co.uk
@@ -136,7 +138,6 @@
 ||imgchili.net
 ||imgspice.com
 ||imgtwist.com
-||picuphost.com
 ||uploadhouse.com
 ||ipoock.com
 ||imgaa.com

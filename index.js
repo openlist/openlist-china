@@ -40,7 +40,7 @@ if (require.main === module) {
     miss: program.miss || 'DIRECT'
   })
 
-  var outputPath = program.output || path.join(__dirname, 'openlist.pac')
+  var outputPath = program.output || 'openlist.pac'
   fs.writeFileSync(outputPath, output)
   console.log('Generate pac file at', outputPath)
 } else {
