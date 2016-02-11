@@ -1,7 +1,7 @@
 {
   "name": "openlist",
-  "version": "0.3.2",
-  "description": "An autoproxy pac for mainland China",
+  "version": "1.0.0",
+  "description": "An autoproxy pac builder for mainland China",
   "main": "index.js",
   "bin": "index.js",
   "preferGlobal": true,

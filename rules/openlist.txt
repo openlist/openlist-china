@@ -37,6 +37,8 @@
 ||media.tumblr.com
 ||vimeo.com
 ||soundcloud.com
+||pandora.com
+||spotify.com
 ||instagram.com
 ||cdninstagram.com
 ||flickr.com
@@ -75,6 +77,7 @@
 ||npmjs.com
 ||dropbox.com
 ||dropboxstatic.com
+||dropboxusercontent.com
 ||speakerdeck.com
 ||slideshare.net
 ||slidesharecdn.com
