@@ -1,6 +1,9 @@
-[![npm version](https://badge.fury.io/js/openlist.svg)](http://badge.fury.io/js/openlist)
+[![version](https://img.shields.io/npm/v/openlist.svg?style=flat-square)](https://www.npmjs.com/package/openlist)
+[![license](https://img.shields.io/npm/l/openlist.svg?style=flat-square)](https://www.npmjs.com/package/openlist)
+[![downloads](https://img.shields.io/npm/dt/express.svg?style=flat-square)](https://www.npmjs.com/package/openlist)
+[![Maintenance](https://img.shields.io/maintenance/yes/2016.svg?style=flat-square)](https://github.com/openlist/openlist-china)
 
-An autoproxy pac for mainland China.
+An autoproxy pac builder for mainland China.
 
 **Install globally:**
 
@@ -18,7 +21,7 @@ openlist # will generate a openlist.pac file
 
 or use the [gfwlist] which is more extensive:
 ```
-base64 -d <( curl https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt ) > /tmp/gfwlist && openlist -r /tmp/gfwlist && scp openlist.pac 192.168.1.1:/www
+base64 -d <( curl https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt ) > /tmp/gfwlist && openlist -r /tmp/gfwlist
 ```
 
 **Or use as a nodejs module:**
