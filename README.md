@@ -11,16 +11,16 @@ An autoproxy pac builder for mainland China.
 npm install -g openlist
 openlist --help
 # Usage: openlist [options]
-# 
+#
 # Options:
-# 
+#
 #   -h, --help           output usage information
 #   -V, --version        output the version number
 #   -y, --match <proxy>  proxy for matched url
 #   -n, --miss <proxy>   proxy for missed url
 #   -r, --rule <path>    source file path
 #   -o, --output <path>  output target file path
-# 
+#
 # Default options:
 #   openlist -r rules/openlist.txt \
 #            -o openlist.pac \
@@ -37,7 +37,7 @@ openlist # will generate a openlist.pac file
 
 or use the [gfwlist] which is more extensive:
 ```
-base64 -d <( curl https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt ) > /tmp/gfwlist && openlist -r /tmp/gfwlist
+openlist -r <(curl https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt | base64 -d) # convert gfwlist to autoproxy pac file
 ```
 
 **Or use as a nodejs module:**

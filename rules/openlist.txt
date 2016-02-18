@@ -4,6 +4,7 @@
 ||gstatic.com
 ||googleapis.com
 ||googleusercontent.com
+.googleusercontent.com
 ||ggpht.com
 ||googlevideo.com
 ||googlecode.com
@@ -15,6 +16,7 @@
 ||youtube.com
 ||ytimg.com
 ||youtu.be
+||youtube-nocookie.com
 ||appspot.com
 ||blogspot.
 ||bp.blogspot.com
@@ -33,10 +35,12 @@
 ||facebook.com
 ||facebook.net
 ||xx.fbcdn.net
+||fb.me
 ||tumblr.com
 ||media.tumblr.com
 ||vimeo.com
 ||soundcloud.com
+||sndcdn.com
 ||pandora.com
 ||spotify.com
 ||instagram.com
@@ -59,6 +63,7 @@
 ||wordpress.com
 ||video.yahoo.com
 ||fc2.com
+||blog.fc2.com
 ||contents.fc2.com
 ||nicovideo.jp
 ||trollvids.com
@@ -69,6 +74,7 @@
 ||bahamut.com.tw
 ||disqus.com
 ||disquscdn.com
+||panoramio.com
 
 ! === Developer ===
 ||github.com
@@ -152,5 +158,6 @@
 ||helpzhuling.org
 ||*.ninja^
 ||*.xxx^
+||*.cc^
 
 ! vim: set filetype=adblockfilter: (mojako/adblock-filter.vim)
