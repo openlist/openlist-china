@@ -8,6 +8,7 @@
 ||ggpht.com
 ||googlevideo.com
 ||googlecode.com
+||googlesource.com
 ||gmail.com
 ||chrome.com
 ||chromium.org
@@ -57,14 +58,14 @@
 ||iqdb.org
 ||telegram.org
 ||web.telegram.org
+||tchannels.me
 ||line.me
 ||viber.com
 ||cdn.viber.com
 ||wordpress.com
 ||video.yahoo.com
 ||fc2.com
-||blog.fc2.com
-||contents.fc2.com
+.fc2.com
 ||nicovideo.jp
 ||trollvids.com
 ||blog.jp
@@ -75,6 +76,7 @@
 ||disqus.com
 ||disquscdn.com
 ||panoramio.com
+||snag.gy
 
 ! === Developer ===
 ||github.com
@@ -91,6 +93,7 @@
 ||m.wikipedia.org
 ||duckduckgo.com
 ||openvpn.net
+||getcloak.com
 ||tunnelbear.com
 ||box.com
 ||sugarsync.com
@@ -115,6 +118,7 @@
 ||feedly.com
 ||sankakucomplex.com
 ||beijingspring.com
+||jandan.net
 ||xys.org
 ||e-hentai.org
 ||ehgt.org
@@ -123,19 +127,22 @@
 ||greatfire.org
 ||chinagfw.org
 ||fanqianghou.com
+||icij.org
+||storm.mg
 
 ! === CDN ===
 .amazonaws.com
 ||sstatic.net
-||global.ssl.fastly.net
+.ssl.fastly.net
 ||akamai.net
 ||akamaihd.net
 ||gravatar.com
-||cloudfront.net
+.cloudfront.net
 ||cloudflare.com
 ||edgefonts.net
 ||typekit.net
 ||webtype.com
+||wistia.com
 ||cloudup.com
 ||cldup.com
 ||w.org^
@@ -150,7 +157,11 @@
 ||uploadhouse.com
 ||ipoock.com
 ||imgaa.com
+||imgbb.net
 ||imgwe.com
+||u2s.ir
+||nyaa.se
+||postimg.org
 
 ! === Others ===
 ||shadowsocks.org
