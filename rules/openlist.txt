@@ -40,6 +40,7 @@
 ||tumblr.com
 ||media.tumblr.com
 ||vimeo.com
+||medium.com
 ||soundcloud.com
 ||sndcdn.com
 ||pandora.com
@@ -112,6 +113,8 @@
 ||bbc.com
 ||bbci.co.uk
 ||cnn.com
+||economist.com
+||static-economist.com
 ||reuters.com
 ||mobile.reuters.com
 ||chosun.com
