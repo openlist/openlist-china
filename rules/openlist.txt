@@ -2,7 +2,7 @@
 ||google.com
 .google.com
 ||gstatic.com
-||googleapis.com
+.googleapis.com
 ||googleusercontent.com
 .googleusercontent.com
 ||ggpht.com
@@ -57,6 +57,7 @@
 ||pixiv.net
 ||donmai.us
 ||iqdb.org
+||snapchat.com
 ||telegram.org
 ||web.telegram.org
 ||tchannels.me
@@ -70,7 +71,12 @@
 ||nicovideo.jp
 ||trollvids.com
 ||blog.jp
-||blogimg.jp
+.blogimg.jp
+||dmm.co.jp
+||livedoor.jp
+.livedoor.jp
+||blogsys.jp
+||doorblog.jp
 ||jiandan.net
 ||gamer.com.tw
 ||bahamut.com.tw
@@ -103,6 +109,7 @@
 ||ift.tt
 ||archive.org
 ||peter.sh
+||squarespace.com
 
 ! === News ===
 ||wsj.com
@@ -119,6 +126,7 @@
 ||mobile.reuters.com
 ||chosun.com
 ||feedly.com
+||inoreader.com
 ||sankakucomplex.com
 ||beijingspring.com
 ||jandan.net
@@ -126,7 +134,13 @@
 ||e-hentai.org
 ||ehgt.org
 ||minkch.com
+||sumomo-ch.com
+||erobooks.net
+||erogazounosuke.com
+||eroterest.net
+||free-douga-search.com
 ||t66y.com
+||xvideos.com
 ||greatfire.org
 ||chinagfw.org
 ||fanqianghou.com
@@ -165,6 +179,7 @@
 ||u2s.ir
 ||nyaa.se
 ||postimg.org
+||javynow.com
 
 ! === Others ===
 ||shadowsocks.org
