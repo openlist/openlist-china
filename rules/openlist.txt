@@ -23,6 +23,7 @@
 ||bp.blogspot.com
 ||blogger.com
 ||blogblog.com
+||googleblog.com
 ||withgoogle.com
 ||feedburner.com
 ||googlezip.net
@@ -84,6 +85,9 @@
 ||disquscdn.com
 ||panoramio.com
 ||snag.gy
+||twicsy.com
+||tweettunnel.com
+||break.com
 
 ! === Developer ===
 ||github.com
@@ -127,6 +131,7 @@
 ||chosun.com
 ||feedly.com
 ||inoreader.com
+||tt-rss.org
 ||sankakucomplex.com
 ||beijingspring.com
 ||jandan.net
@@ -138,9 +143,11 @@
 ||erobooks.net
 ||erogazounosuke.com
 ||eroterest.net
+||erogiga.com
 ||free-douga-search.com
 ||t66y.com
 ||xvideos.com
+||hnntube.com
 ||greatfire.org
 ||chinagfw.org
 ||fanqianghou.com
@@ -180,6 +187,12 @@
 ||nyaa.se
 ||postimg.org
 ||javynow.com
+||mailchimp.com
+||cdn.whatsapp.net
+.ucdn.com
+||xhamster.com
+||xhcdn.com
+||archive.li
 
 ! === Others ===
 ||shadowsocks.org
